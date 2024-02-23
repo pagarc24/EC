@@ -66,4 +66,30 @@
 
  */
 
-//
+// Cada vez que el TIMER0 se acabe (programado con un delay de 40.000) el led P1.0 cambia de estado (de encendido a apagado y viceversa)
+
+# pragma vector = TIMER1_A0_VECTOR
+__interrupt void TIMER1_A0_ISR (void) {
+    P1OUT ^= BIT0; // Switch Bit1 value
+    //LIMPIA FLAG
+}
+
+void main(void){
+    // disable watchdog
+    WDTCTL = WDTPW | WDTHOLD;
+    // disable high impeadance on I / O
+    PM5CTL0 &= ~LOCKLPM5;
+
+    // set P1 .0 as output , rest as inputs
+    P1DIR = BIT0;
+
+    //CONFIGURACION DEL TIMER0
+    // Configuraci ´on TIMER_A :
+    // TimerA1 , ACLK /1 , modo up , reinicia TACLR
+    TA1CTL = TASSEL__ACLK | ID__1 | MC__UP | TACLR ;
+    // ACLK tiene una frecuencia de 32768 Hz
+    // Carga cuenta en TA1CCR0 0.1 seg TA1CCR =(0 ,1*32768) -1
+    // se disparar ´a aprox . cada 0.1s
+    TA1CCR0 = 3276;
+    TA1CCTL0 = CCIE ; // Habilita interrupci ´on (bit CCTIMER1_A0IE ) en TIMER1_A0
+}
