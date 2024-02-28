@@ -123,8 +123,7 @@ void main(void){
 
     config_ACLK_to_32KHz_crystal();
 
-    // set P1 .0 as output , rest as inputs (EXTRA)
-    P1DIR = BIT0;
+    //p1.1 y p1.2 puestos como in
     P1DIR &= ~ BIT1;
     P1DIR &= ~ BIT2;
 
@@ -172,8 +171,14 @@ __interrupt void Port_1 ( void ) {
     if(P1IFG & BIT1)//INT P1.1
     {
         //parada o reanudacion
-        if(ctrl_cuenta) ctrl_cuenta = 0;
-        else ctrl_cuenta = 1;
+        if(ctrl_cuenta){
+            ctrl_cuenta = 0;
+            TA0CTL |= MC__STOP;
+        }
+        else{
+            ctrl_cuenta = 1;
+            TA0CTL |= MC__UP;
+        }
 
         //limpia el flag de interrupcion
         P1IFG &= ~BIT1 ;
@@ -181,7 +186,7 @@ __interrupt void Port_1 ( void ) {
     else if (P1IFG & BIT2)//INT P1.2
     {
         //reseteo del timer
-        TA0CTL = TASSEL__ACLK | ID__1 | MC__UP | TACLR ;
+        TA0CTL |= TACLR ;
 
         //reseteo del valor a contar
         cnt = 0;
@@ -196,8 +201,6 @@ __interrupt void Port_1 ( void ) {
 # pragma vector = TIMER0_A0_VECTOR
 __interrupt void TIMER0_A0_ISR (void) {
     if (ctrl_cuenta) cnt++;
-    else P1OUT ^=BIT0;
-    //display_num_lcd(cnt);
 }
 
 // **********************************
