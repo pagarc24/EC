@@ -92,8 +92,6 @@ void main(void){
 /*
     EJERCICIO 4
 
-*/
-
 // Generar un programa en C embebido que utilizando el contador TIMER0 del microprocesador (inicializado a 40.000) y a través
 // del método de interrupciones, muestre el conteo en el LCD de la placa añadiendo el control de los dos switches (botones) para Parar/Continuar y Reiniciar el contador
 // Botón1: La parada del contador cuando se pulsa el switch. Si se vuelve a pulsar continua el conteo desde el valor actual.
@@ -127,13 +125,15 @@ void main(void){
 
     // set P1 .0 as output , rest as inputs (EXTRA)
     P1DIR = BIT0;
+    P1DIR &= ~ BIT1;
+    P1DIR &= ~ BIT2;
 
     //CONFIGURAR BOTONES
     //P1.1 botón de pausa y continuar
     // enable pull on P1 .1 , rest disabled
-    P1REN = BIT1;
+    P1REN |= BIT1;
     // set pull - up on P1 .1
-    P1OUT = BIT1;
+    P1OUT |= BIT1;
 
     // P1 .1 IRQ enabled
     P1IE |= BIT1;
@@ -146,9 +146,9 @@ void main(void){
     //P1.2 botón de resetear la cuenta
     //P1.2 botón de pausa y continuar
     // enable pull on P1 .2 , rest disabled
-    P1REN = BIT2;
+    P1REN |= BIT2;
     // set pull - up on P1 .2
-    P1OUT = BIT2;
+    P1OUT |= BIT2;
 
     // P1 .2 IRQ enabled
     P1IE |= BIT2;
@@ -274,3 +274,4 @@ void Initialize_LCD () {
     LCDCCTL0 |= LCDON ;
     return ;
 }
+*/
