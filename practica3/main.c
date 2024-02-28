@@ -379,7 +379,7 @@ __interrupt void Port_1 ( void ) {
     else if (P1IFG & BIT2)//INT P1.2
     {
         //reseteo del timer
-        TA0CTL = TASSEL__ACLK | ID__1 | MC__UP | TACLR ;
+        TA0CTL |= TACLR ;
 
         //reseteo del valor a contar
         cnt = 0;
