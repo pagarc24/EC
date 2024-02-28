@@ -364,8 +364,14 @@ __interrupt void Port_1 ( void ) {
     if(P1IFG & BIT1)//INT P1.1
     {
         //parada o reanudacion
-        if(ctrl_cuenta) ctrl_cuenta = 0;
-        else ctrl_cuenta = 1;
+        if(ctrl_cuenta){
+            ctrl_cuenta = 0;
+            TA0CTL |= MC__STOP;
+        }
+        else{
+            ctrl_cuenta = 1;
+            TA0CTL |= MC__UP;
+        }
 
         //limpia el flag de interrupcion
         P1IFG &= ~BIT1 ;
