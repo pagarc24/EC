@@ -1,5 +1,6 @@
 # EC
 Repositorio con las prácticas correspondientes a la asignatura de EC  
+La práctica 1 sirve para conocer el entorno de desarrollo y la práctica 5 es una práctica libre bajo una serie de requisitos. El resto de prácticas constan de un enunciado y una serie de ejercicios puestos a posteriori como modificación de la misma  
 Estas prácticas se realizarán sobre la placa MSP430FR6989 de Texas Instruments  
   
 ![Imagen](https://www.ti.com/content/dam/ticom/images/products/ic/microcontrollers/msp/evm-board/msp-exp430fr6989-angled.png)  
