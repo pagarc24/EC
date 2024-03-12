@@ -9,9 +9,11 @@ Estas prácticas se realizarán sobre la placa MSP430FR6989 de Texas Instruments
 [Enunciado](practica1/enunciado.pdf)  
 
 ## Práctica 2: Configuración de los puertos de E/S  
+En esta práctica realizamos distintas configuraciones a los puertos de E/S de la placa MSP430 para que realizaran distintas implementaciones.  
 [Enunciado](practica2/enunciado.pdf) [Modificación](practica2/modificacion.pdf) [Código](practica2/main.c)  
 
 ## Práctica 3: Tratamiento de interrupciones  
+En esta práctica aprendimos a usar el polling y a como generar interrupciones en la MSP430 mediante rutinas de tratamiento de interrupciones  
 [Enunciado](practica3/enunciado.pdf) [Modificación](practica3/modificacion.pdf) [Código](practica3/main.c)  
 
 ## Práctica 4: Comunicación Serie Universal (Working in progres...)  
