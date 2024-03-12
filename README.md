@@ -1,6 +1,8 @@
 # EC
 Repositorio con las prácticas correspondientes a la asignatura de EC  
 Estas prácticas se realizarán sobre la placa MSP430FR6989 de Texas Instruments  
+  
+![Imagen](https://www.ti.com/content/dam/ticom/images/products/ic/microcontrollers/msp/evm-board/msp-exp430fr6989-angled.png)  
 
 ## Práctica 1: Entorno de desarrollo  
 [Enunciado](practica1/enunciado.pdf)  
