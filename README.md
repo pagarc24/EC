@@ -16,3 +16,6 @@ Estas prácticas se realizarán sobre la placa MSP430FR6989 de Texas Instruments
 
 ## Práctica 4: Comunicación Serie Universal (Working in progres...)  
 [Enunciado](practica4/enunciado.pdf)  
+
+## Práctica 5: Práctica Libre (Por determinar...)  
+[Requisitos](practica5/requisitos.pdf)  
