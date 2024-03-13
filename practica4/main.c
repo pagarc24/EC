@@ -1,40 +1,13 @@
 //Práctica 4 por Pablo García Fernández
 #include <msp430.h> 
 
-void Initialize_LCD () {
-    PJSEL0 = BIT4 | BIT5 ; // For LFXT
-    // Initialize LCD segments 0 - 21; 26 - 43
-    LCDCPCTL0 = 0xFFFF ;
-    LCDCPCTL1 = 0xFC3F ;
-    LCDCPCTL2 = 0x0FFF ;
-
-    // Configure LFXT 32 kHz crystal
-    CSCTL0_H = CSKEY >> 8; // Unlock CS registers
-    CSCTL4 &= ~ LFXTOFF ; // Enable LFXT
-
-    do {
-        CSCTL5 &= ~ LFXTOFFG ; // Clear LFXT fault flag
-        SFRIFG1 &= ~ OFIFG ;
-    } while ( SFRIFG1 & OFIFG ) ; // Test oscillator fault flag
-
-    CSCTL0_H = 0; // Lock CS registers
-
-    // Initialize LCD_C
-    // ACLK , Divider = 1 , Pre - divider = 16; 4 - pin MUX
-    LCDCCTL0 = LCDDIV__1 | LCDPRE__16 | LCD4MUX | LCDLP ;
-
-    // VLCD generated internally ,
-    // V2 -V4 generated internally , v5 to ground
-    // Set VLCD voltage to 2.60 v
-    // Enable charge pump and select internal reference for it
-    LCDCVCTL = VLCD_1 | VLCDREF_0 | LCDCPEN ;
-    LCDCCPCTL = LCDCPCLKSYNC ; // Clock synchronization enabled
-    LCDCMEMCTL = LCDCLRM ; // Clear LCD memory
-
-    // Turn LCD on
-    LCDCCTL0 |= LCDON ;
-    return ;
-}
+/*
+EJERCICIO 1. Realizar un programa para que la UART transmita el abecedario con la siguiente configuración: 9600, 8 bits de datos,
+1 bit de stop, y sin paridad y que se pueda visualizar a través del USB en el hyperteminal. PISTA: se puede utilizar
+un temporizador en cuya interrupción se mande una nueva letra a la UART solo si esta ha disparado previamente una interrupción de transmisión.
+*/
+unsigned int idxLetra = 0;
+unsigned int cuenta = 1;
 // diccionario para transformar letras a segmentos del LCD
 const char alphabetBig [26][2] ={
 {0xEF , 0x00 } , /* "A" LCD segments a+b+c+e+f+g+m */
@@ -63,32 +36,43 @@ const char alphabetBig [26][2] ={
 {0x00 , 0xAA } , /* "X" */
 {0x00 , 0xB0 } , /* "Y" */
 {0x90 , 0x28 } /* "Z" */};
-void ShowBuffer ( int buffer []) {
-    LCDMEM [9] = alphabetBig [( buffer [5]) -65][0];
-    LCDMEM [10] = alphabetBig [( buffer [5]) -65][1];
-    LCDMEM [5] = alphabetBig [( buffer [4]) -65][0];
-    LCDMEM [6] = alphabetBig [( buffer [4]) -65][1];
-    LCDMEM [3] = alphabetBig [( buffer [3]) -65][0];
-    LCDMEM [4] = alphabetBig [( buffer [3]) -65][1];
-    LCDMEM [18] = alphabetBig [( buffer [2]) -65][0];
-    LCDMEM [19] = alphabetBig [( buffer [2]) -65][1];
-    LCDMEM [14] = alphabetBig [( buffer [1]) -65][0];
-    LCDMEM [15] = alphabetBig [( buffer [1]) -65][1];
-    LCDMEM [7] = alphabetBig [( buffer [0]) -65][0];
-    LCDMEM [8] = alphabetBig [( buffer [0]) -65][1];
-}
+
+char siguienteLetra();
 
 # pragma vector = USCI_A1_VECTOR
 __interrupt void USCI_A1_ISR ( void ) {
-    //TODO RUTINA
-    UCA1IFG &= ~ (UCTXIFG | UCRXIFG);
+    char next = siguienteLetra();
+    if(UCA1IFG & UCTXIFG){//transmisión
+        UCA1TXBUF = next;
+        UCA1IE &= ~ UCTXIE;
+        UCA1IFG &= ~ UCTXIFG;
+    } else if (UCA1IFG & UCRXIFG){//recepción
+        UCA1IFG &= ~ UCRXIFG;
+    }
+}
+# pragma vector = TIMER0_A0_VECTOR
+__interrupt void TIMER0_A0_ISR (void) {
+    if (cuenta==5) {
+        cuenta = 1;
+        UCA1IE |= UCTXIE;
+    } else {
+        cuenta++;
+    }
 }
 
 
 int main(void){
     WDTCTL = WDTPW | WDTHOLD;
     PM5CTL0 &= ~LOCKLPM5;
-	
+
+    P3SEL0 = BIT4 + BIT5;
+    P3SEL1 = 0x00;
+
+    //CONFIGURACION DEL TIMER0
+    TA0CTL = TASSEL__ACLK | ID__1 | MC__UP | TACLR ;
+    TA0CCR0 = 3276;//0,1segundos según el enunciado de la práctica 3
+    TA0CCTL0 = CCIE;
+
     CSCTL0_H = CSKEY >> 8; // Unlock clock registers
     CSCTL1 = DCOFSEL_3 | DCORSEL ; // Set DCO to 8 MHz
     CSCTL2 = SELA__VLOCLK | SELS__DCOCLK | SELM__DCOCLK ;
@@ -112,7 +96,20 @@ int main(void){
 
     UCA1IFG &= ~UCRXIFG;
     //UCA1IFG &= ~ (UCTXIFG | UCRXIFG);
-    _BIS_SR(LPM4_bits + GIE);
+    //__bis_SR_register ( LPM4_bits + GIE ) ;
+    __enable_interrupt();
 
-	return 0;
+    return 0;
+}
+
+
+char siguienteLetra(){
+    char ret = 'A' + idxLetra;//generamos el carácter a enviar
+
+    //actualizamos el idxLetra para avanzar a la siguiente letra
+    idxLetra++;
+    if (idxLetra == 26) idxLetra = 0;
+
+    return ret;//devolvemos la letra
+
 }
