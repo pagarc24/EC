@@ -26,7 +26,7 @@ Como resultado final de la práctica hicimos un contador que se controla mediant
 
 ## Práctica 4: Comunicación Serie Universal (Working in progres...)  
   
-[Enunciado](practica4/enunciado.pdf)  
+[Enunciado](practica4/enunciado.pdf) [Código](practica4/main.c)  
 
 ## Práctica 5: Práctica Libre (Por determinar...)  
   
