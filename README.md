@@ -1,7 +1,7 @@
 # EC
 Repositorio con las prácticas correspondientes a la asignatura de EC  
   
-La práctica 1 sirve para conocer el entorno de desarrollo y la práctica 5 es una práctica libre bajo una serie de requisitos. El resto de prácticas constan de un enunciado y una serie de ejercicios puestos a posteriori como modificación de la misma  
+La práctica 1 sirve para conocer el entorno de desarrollo y la práctica 5 es una práctica libre bajo una serie de requisitos. El resto de prácticas constan de un enunciado y una serie de ejercicios puestos a posteriori como modificación de la misma. Las práctica 3 y 4, tienen también una modificación extraordinaria para aquellos alumnos que no la consiguieron realizar a tiempo  
   
 Estas prácticas se realizarán sobre la placa MSP430FR6989 de Texas Instruments  
   
@@ -22,11 +22,12 @@ En esta práctica aprendimos a usar el polling y a como generar interrupciones e
   
 Como resultado final de la práctica hicimos un contador que se controla mediante push-buttons y se visualiza en el LCD  
   
-[Enunciado](practica3/enunciado.pdf) [Modificación](practica3/modificacion.pdf) [Código](practica3/main.c)  
+[Enunciado](practica3/enunciado.pdf) [Modificación](practica3/modificacion.pdf) [Modificación Extraordinaria](practica3/modificacion-extraordinaria.pdf) [Código](practica3/main.c)  
 
-## Práctica 4: Comunicación Serie Universal (Working in progres...)  
+## Práctica 4: Comunicación Serie Universal  
+En esta práctica aprendimos a configurar la UART y a comunicarnos con ella mediante el uso de un terminal  
   
-[Enunciado](practica4/enunciado.pdf) [Código](practica4/main.c)  
+[Enunciado](practica4/enunciado.pdf) [Modificación](practica4/modificacion.pdf) [Modificación Extraordinaria](practica4/modificacion-extraordinaria.pdf) [Código](practica4/main.c)  
 
 ## Práctica 5: Práctica Libre (Por determinar...)  
   
