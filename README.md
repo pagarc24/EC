@@ -25,14 +25,14 @@ Como resultado final de la práctica hicimos un contador que se controla mediant
   
 Parte básica: [Enunciado](practica3/enunciado.pdf) [Código](practica3/basica.c)  
 Modificación: [Enunciado](practica3/modificacion.pdf) [Código](practica3/modificacion.c)  
-Modificación extraordinaria: [Enunciado](practica3/modificacion-extraordinaria.pdf)[Código](practica3/modificacion-extraordinaria.c)  
+Modificación extraordinaria: [Enunciado](practica3/modificacion-extraordinaria.pdf) [Código](practica3/modificacion-extraordinaria.c)  
 
 ## Práctica 4: Comunicación Serie Universal  
 En esta práctica aprendimos a configurar la UART y a comunicarnos con ella mediante el uso de un terminal  
   
 Parte básica: [Enunciado](practica4/enunciado.pdf) [Código](practica4/basica.c)  
 Modificación: [Enunciado](practica4/modificacion.pdf) [Código](practica4/modificacion.c)  
-Modificación extraordinaria: [Enunciado](practica4/modificacion-extraordinaria.pdf)[Código](practica4/modificacion-extraordinaria.c)  
+Modificación extraordinaria: [Enunciado](practica4/modificacion-extraordinaria.pdf) [Código](practica4/modificacion-extraordinaria.c)  
   
 ## Práctica 5: Práctica Libre (Por determinar...)  
   
