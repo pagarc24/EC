@@ -15,19 +15,22 @@ En esta práctica aprendimos a usar el entorno de desarrollo junto con algunas d
 ## Práctica 2: Configuración de los puertos de E/S  
 En esta práctica realizamos distintas configuraciones a los puertos de E/S mediante leds y push-buttons de la placa MSP430 para que realizara distintas implementaciones  
   
-[Enunciado](practica2/enunciado.pdf) [Modificación](practica2/modificacion.pdf) [Código](practica2/main.c)  
+[Enunciado](practica2/enunciado.pdf) [Modificación](practica2/modificacion.pdf)   
+[Código parte básica](practica2/basica.c) [Código modificación](practica2/modificacion.c)  
 
 ## Práctica 3: Tratamiento de interrupciones  
 En esta práctica aprendimos a usar el polling y a como generar interrupciones en la MSP430 mediante rutinas de tratamiento de interrupciones, concretamente usando las interrupciones de los push-buttons y de los timers, aprendiendo a configurar estos últimos  
   
 Como resultado final de la práctica hicimos un contador que se controla mediante push-buttons y se visualiza en el LCD  
   
-[Enunciado](practica3/enunciado.pdf) [Modificación](practica3/modificacion.pdf) [Modificación Extraordinaria](practica3/modificacion-extraordinaria.pdf) [Código](practica3/main.c)  
+[Enunciado](practica3/enunciado.pdf) [Modificación](practica3/modificacion.pdf) [Modificación Extraordinaria](practica3/modificacion-extraordinaria.pdf)   
+[Código parte básica](practica3/basica.c) [Código modificación](practica3/modificacion.c) [Código modificación extraordinaria](practica3/modificacion-extraordinaria.c)  
 
 ## Práctica 4: Comunicación Serie Universal  
 En esta práctica aprendimos a configurar la UART y a comunicarnos con ella mediante el uso de un terminal  
   
-[Enunciado](practica4/enunciado.pdf) [Modificación](practica4/modificacion.pdf) [Modificación Extraordinaria](practica4/modificacion-extraordinaria.pdf) [Código](practica4/main.c)  
+[Enunciado](practica4/enunciado.pdf) [Modificación](practica4/modificacion.pdf) [Modificación Extraordinaria](practica4/modificacion-extraordinaria.pdf)   
+[Código parte básica](practica4/basica.c) [Código modificación](practica4/modificacion.c) [Código modificación extraordinaria](practica4/modificacion-extraordinaria.c)  
 
 ## Práctica 5: Práctica Libre (Por determinar...)  
   
