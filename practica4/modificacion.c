@@ -59,6 +59,10 @@ int main(void){
     Initialize_LCD();
     config_ACLK_to_32KHz_crystal();
 
+    //config led
+    P1DIR |= BIT0;
+    P1OUT = 0x0;
+
     //p1.1 y p1.2 puestos como in
     P1DIR &= ~ BIT1;
     P1DIR &= ~ BIT2;
@@ -129,9 +133,12 @@ int main(void){
 __interrupt void Port_1 ( void ) {
     if(P1IFG & BIT1)//INT P1.1
     {
-        if(TA0CTL & MC__STOP){//está parado, reanudamos
+        if((TA0CTL & 0x30)==MC__STOP){///está parado, reanudamos
+            //STOP MODE: BITS 4 y 5 a 0 del TA0CTL
+            TA0CTL &= ~(BIT5 | BIT4);
             TA0CTL |= MC__UP;
         } else {//está corriendo, lo paramos
+            TA0CTL &= ~(BIT5 | BIT4);
             TA0CTL |= MC__STOP;
         }
 
@@ -249,13 +256,19 @@ char siguienteLetra(){
     char ret = 'A' + idxLetra;//generamos el carácter a enviar
 
     //actualizamos el idxLetra para avanzar a la siguiente letra
-    if (idxLetra == 25){//hemos llegado al final del abecedario
-        //encendemos led
+    if (idxLetra == 25){
         idxLetra = 0;
     }
     else{
-        if (idxLetra == 0) //apagamos led
-        idxLetra++;
+        if (idxLetra == 0){//hemos completado el abecedario
+            //encendemos led
+            P1OUT |= BIT0;
+        } else if (idxLetra == 1){
+            //apagamos led
+            P1OUT&= ~BIT0;
+        }
+
+         idxLetra++;
     }
 
     return ret;//devolvemos la letra
