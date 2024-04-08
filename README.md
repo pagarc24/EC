@@ -34,6 +34,7 @@ Parte básica: [Enunciado](practica4/enunciado.pdf) [Código](practica4/basica.c
 Modificación: [Enunciado](practica4/modificacion.pdf) [Código](practica4/modificacion.c)  
 Modificación extraordinaria: [Enunciado](practica4/modificacion-extraordinaria.pdf) [Código](practica4/modificacion-extraordinaria.c)  
   
-## Práctica 5: Práctica Libre (Por determinar...)  
+## Práctica 5: Máquina tragaperras (Práctica Libre)  
+La práctica 5 es una práctica opcional y libre que debe seguir una serie de [requisitos](practica5/requisitos.pdf). Personalmente he decidido hacer una [máquina tragaperras](practica5/maquinatragaperras.pdf)  
   
-[Requisitos](practica5/requisitos.pdf)  
+[Código](practica5/tragaperras.c)
